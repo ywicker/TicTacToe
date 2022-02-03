@@ -31,4 +31,17 @@ public class CellsTest {
         assertThat(cell_1_1.getWasPlayedBy()).isNull();
         assertThat(cell_1_2.getWasPlayedBy()).isEqualTo(PLAYER_O);
     }
+    @Test
+    void set_X_at_the_coordinate_3_3_should_change_content_of_cell() {
+        var cells = new Cells();
+
+        cells.set(PLAYER_O, 3, 3);
+        Cell cell_1_1 = cells.get(1, 1);
+        Cell cell_1_2 = cells.get(1, 2);
+        Cell cell_3_3 = cells.get(3, 3);
+
+        assertThat(cell_1_1.getWasPlayedBy()).isNull();
+        assertThat(cell_1_2.getWasPlayedBy()).isNull();
+        assertThat(cell_3_3.getWasPlayedBy()).isEqualTo(PLAYER_O);
+    }
 }
