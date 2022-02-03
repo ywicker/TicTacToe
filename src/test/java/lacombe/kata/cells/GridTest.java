@@ -2,6 +2,7 @@ package lacombe.kata.cells;
 
 import lacombe.kata.Cell;
 import lacombe.kata.Grid;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static lacombe.kata.Player.PLAYER_O;
@@ -60,5 +61,21 @@ public class GridTest {
 
         assertThatThrownBy(() -> cells.set(PLAYER_O, 4, 2))
                 .isInstanceOf(AssertionError.class);
+    }
+    @Test
+    void all_fields_are_taken_when_all_cells_was_set() {
+        var cells = new Grid();
+
+        cells.set(PLAYER_X, 1, 1);
+        cells.set(PLAYER_O, 2, 2);
+        cells.set(PLAYER_X, 1, 2);
+        cells.set(PLAYER_O, 1, 3);
+        cells.set(PLAYER_X, 3, 1);
+        cells.set(PLAYER_O, 2, 1);
+        cells.set(PLAYER_X, 2, 3);
+        cells.set(PLAYER_O, 3, 2);
+        cells.set(PLAYER_X, 3, 3);
+
+        Assertions.assertTrue(cells.allFieldsAreTaken());
     }
 }

@@ -1,5 +1,6 @@
 package lacombe.kata;
 
+import java.util.Objects;
 import java.util.Set;
 
 public class Grid {
@@ -31,5 +32,9 @@ public class Grid {
                 .filter(cell -> x == cell.getX() && y == cell.getY())
                 .findAny()
                 .orElse(null);
+    }
+
+    public boolean allFieldsAreTaken() {
+        return cellList.stream().noneMatch(Objects::isNull);
     }
 }
