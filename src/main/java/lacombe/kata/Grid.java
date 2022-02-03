@@ -35,6 +35,8 @@ public class Grid {
     }
 
     public boolean allFieldsAreTaken() {
-        return cellList.stream().noneMatch(Objects::isNull);
+        return cellList.stream()
+                .map(Cell::getWasPlayedBy)
+                .noneMatch(Objects::isNull);
     }
 }

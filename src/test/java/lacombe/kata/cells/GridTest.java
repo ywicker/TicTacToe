@@ -63,7 +63,7 @@ public class GridTest {
                 .isInstanceOf(AssertionError.class);
     }
     @Test
-    void all_fields_are_taken_when_all_cells_was_set() {
+    void all_fields_are_taken_when_all_cells_were_set() {
         var cells = new Grid();
 
         cells.set(PLAYER_X, 1, 1);
@@ -78,4 +78,13 @@ public class GridTest {
 
         Assertions.assertTrue(cells.allFieldsAreTaken());
     }
+    @Test
+    void all_fields_are_not_taken_when_only_one_cell_was_set() {
+        var cells = new Grid();
+
+        cells.set(PLAYER_X, 1, 1);
+
+        Assertions.assertFalse(cells.allFieldsAreTaken());
+    }
+
 }
