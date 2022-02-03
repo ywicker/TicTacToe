@@ -21,8 +21,6 @@ public class Cells {
     public void set(Player player, int x, int y) {
         var cell = this.get(x, y);
 
-        assert cell.getWasPlayedBy() == null;
-
         cell.setWasPlayedBy(player);
     }
 

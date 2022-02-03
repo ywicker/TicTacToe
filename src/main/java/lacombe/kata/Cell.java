@@ -25,6 +25,7 @@ public class Cell {
     }
 
     public void setWasPlayedBy(Player player) {
+        assert this.player == null;
         this.player = player;
     }
 

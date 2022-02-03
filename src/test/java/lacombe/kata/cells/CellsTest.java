@@ -2,12 +2,12 @@ package lacombe.kata.cells;
 
 import lacombe.kata.Cell;
 import lacombe.kata.Cells;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static lacombe.kata.Player.PLAYER_O;
 import static lacombe.kata.Player.PLAYER_X;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class CellsTest {
     @Test
@@ -51,7 +51,7 @@ public class CellsTest {
 
         cells.set(PLAYER_X, 2, 2);
 
-        Assertions.assertThatThrownBy(() -> cells.set(PLAYER_O, 2, 2))
+        assertThatThrownBy(() -> cells.set(PLAYER_O, 2, 2))
                 .isInstanceOf(AssertionError.class);
     }
 }
