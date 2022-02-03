@@ -21,6 +21,7 @@ public class TicTacToeTest {
     void player_O_plays_after_player_X_should_change_state_to_player_X_turn() {
         var ticTacToe = new TicTacToe();
 
+        ticTacToe.play(PLAYER_X);
         ticTacToe.play(PLAYER_O);
 
         assertThat(ticTacToe.state()).isEqualTo(PLAYER_X_TURN);

@@ -1,6 +1,5 @@
 package lacombe.kata;
 
-import static lacombe.kata.PlayState.PLAYER_O_TURN;
 import static lacombe.kata.PlayState.PLAYER_X_TURN;
 
 public class TicTacToe {
@@ -11,11 +10,7 @@ public class TicTacToe {
     }
 
     public void play(Player playerX) {
-        if (playerX.equals(Player.PLAYER_O)) {
-            state = PLAYER_X_TURN;
-        } else if (playerX.equals(Player.PLAYER_X)) {
-            state = PLAYER_O_TURN;
-        }
+        state = state.changeState();
     }
 
     public PlayState state() {
