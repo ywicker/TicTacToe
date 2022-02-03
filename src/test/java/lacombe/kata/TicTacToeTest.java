@@ -3,8 +3,7 @@ package lacombe.kata;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import static lacombe.kata.PlayState.PLAYER_O_TURN;
-import static lacombe.kata.PlayState.PLAYER_X_TURN;
+import static lacombe.kata.PlayState.*;
 import static lacombe.kata.Player.PLAYER_O;
 import static lacombe.kata.Player.PLAYER_X;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -42,5 +41,21 @@ public class TicTacToeTest {
 
         Assertions.assertThatThrownBy(() -> ticTacToe.play(PLAYER_X, 1, 2))
                 .isInstanceOf(AssertionError.class);
+    }
+    @Test
+    void is_over_when_all_fields_are_taken() {
+        var ticTacToe = new TicTacToe();
+
+        ticTacToe.play(PLAYER_X, 1, 1);
+        ticTacToe.play(PLAYER_O, 2, 2);
+        ticTacToe.play(PLAYER_X, 1, 2);
+        ticTacToe.play(PLAYER_O, 1, 3);
+        ticTacToe.play(PLAYER_X, 3, 1);
+        ticTacToe.play(PLAYER_O, 2, 1);
+        ticTacToe.play(PLAYER_X, 2, 3);
+        ticTacToe.play(PLAYER_O, 3, 2);
+        ticTacToe.play(PLAYER_X, 3, 3);
+
+        assertThat(ticTacToe.state()).isEqualTo(IS_OVER);
     }
 }

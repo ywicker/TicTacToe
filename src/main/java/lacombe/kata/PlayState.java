@@ -15,7 +15,8 @@ public enum PlayState {
             super.changeState(player);
             return PLAYER_X_TURN;
         }
-    };
+    },
+    IS_OVER(null);
 
     private final Player player;
 
