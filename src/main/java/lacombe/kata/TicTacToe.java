@@ -7,10 +7,6 @@ public class TicTacToe {
         state = PlayState.PLAYER_X_TURN;
     }
 
-    public void play(Player player) {
-        state = state.changeState(player);
-    }
-
     public void play(Player player, int x, int y) {
         state = state.changeState(player);
     }
