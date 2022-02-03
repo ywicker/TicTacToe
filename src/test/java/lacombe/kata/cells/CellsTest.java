@@ -2,6 +2,7 @@ package lacombe.kata.cells;
 
 import lacombe.kata.Cell;
 import lacombe.kata.Cells;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static lacombe.kata.Player.PLAYER_O;
@@ -43,5 +44,14 @@ public class CellsTest {
         assertThat(cell_1_1.getWasPlayedBy()).isNull();
         assertThat(cell_1_2.getWasPlayedBy()).isNull();
         assertThat(cell_3_3.getWasPlayedBy()).isEqualTo(PLAYER_O);
+    }
+    @Test
+    void set_X_to_a_cell_already_taken_should_return_error() {
+        var cells = new Cells();
+
+        cells.set(PLAYER_X, 2, 2);
+
+        Assertions.assertThatThrownBy(() -> cells.set(PLAYER_O, 2, 2))
+                .isInstanceOf(AssertionError.class);
     }
 }

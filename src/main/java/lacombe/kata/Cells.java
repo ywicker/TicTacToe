@@ -19,7 +19,11 @@ public class Cells {
     }
 
     public void set(Player player, int x, int y) {
-        this.get(x, y).setWasPlayedBy(player);
+        var cell = this.get(x, y);
+
+        assert cell.getWasPlayedBy() == null;
+
+        cell.setWasPlayedBy(player);
     }
 
     public Cell get(int x, int y) {
