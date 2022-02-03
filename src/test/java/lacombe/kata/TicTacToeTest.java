@@ -34,4 +34,13 @@ public class TicTacToeTest {
         Assertions.assertThatThrownBy(() -> ticTacToe.play(PLAYER_O))
                 .isInstanceOf(AssertionError.class);
     }
+    @Test
+    void player_X_is_playing_twice_should_return_error() {
+        var ticTacToe = new TicTacToe();
+
+        ticTacToe.play(PLAYER_X);
+
+        Assertions.assertThatThrownBy(() -> ticTacToe.play(PLAYER_X))
+                .isInstanceOf(AssertionError.class);
+    }
 }
