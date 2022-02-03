@@ -2,10 +2,10 @@ package lacombe.kata;
 
 import java.util.Set;
 
-public class Cells {
+public class Grid {
     private final Set<Cell> cellList;
 
-    public Cells() {
+    public Grid() {
         this.cellList = Set.of(
                 new Cell(1, 1),
                 new Cell(1, 2),
