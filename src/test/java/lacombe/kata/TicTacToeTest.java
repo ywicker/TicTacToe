@@ -51,4 +51,13 @@ public class TicTacToeTest {
 
         assertThat(ticTacToe.state()).isEqualTo(PLAYER_O_TURN);
     }
+    @Test
+    void player_0_is_playing_after_player_X_at_an_other_coordinate() {
+        var ticTacToe = new TicTacToe();
+
+        ticTacToe.play(PLAYER_X, 1, 1);
+        ticTacToe.play(PLAYER_O, 1, 2);
+
+        assertThat(ticTacToe.state()).isEqualTo(PLAYER_X_TURN);
+    }
 }
