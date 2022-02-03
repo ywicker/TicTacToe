@@ -1,20 +1,20 @@
 package lacombe.kata;
 
-import java.util.List;
+import java.util.Set;
 
 public class Cells {
-    private final List<Cell> cellList;
+    private final Set<Cell> cellList;
 
     public Cells() {
-        this.cellList = List.of(
+        this.cellList = Set.of(
                 new Cell(1, 1),
                 new Cell(1, 2),
                 new Cell(1, 3),
                 new Cell(2, 1),
                 new Cell(2, 2),
                 new Cell(2, 3),
-                new Cell(1, 1),
-                new Cell(2, 2),
+                new Cell(3, 1),
+                new Cell(3, 2),
                 new Cell(3, 3));
     }
 
