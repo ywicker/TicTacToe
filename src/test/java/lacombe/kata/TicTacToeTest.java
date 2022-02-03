@@ -43,4 +43,12 @@ public class TicTacToeTest {
         Assertions.assertThatThrownBy(() -> ticTacToe.play(PLAYER_X))
                 .isInstanceOf(AssertionError.class);
     }
+    @Test
+    void player_X_is_playing_at_the_coordinate_1_1() {
+        var ticTacToe = new TicTacToe();
+
+        ticTacToe.play(PLAYER_X, 1, 1);
+
+        assertThat(ticTacToe.state()).isEqualTo(PLAYER_O_TURN);
+    }
 }

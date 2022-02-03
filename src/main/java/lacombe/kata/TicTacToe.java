@@ -11,6 +11,10 @@ public class TicTacToe {
         state = state.changeState(player);
     }
 
+    public void play(Player player, int x, int y) {
+        state = state.changeState(player);
+    }
+
     public PlayState state() {
         return state;
     }
