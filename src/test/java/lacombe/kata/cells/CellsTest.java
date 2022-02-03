@@ -54,4 +54,11 @@ public class CellsTest {
         assertThatThrownBy(() -> cells.set(PLAYER_O, 2, 2))
                 .isInstanceOf(AssertionError.class);
     }
+    @Test
+    void set_X_to_a_coordinate_does_not_exist_should_return_error() {
+        var cells = new Cells();
+
+        assertThatThrownBy(() -> cells.set(PLAYER_O, 4, 2))
+                .isInstanceOf(AssertionError.class);
+    }
 }
