@@ -10,7 +10,7 @@ public class TicTacToe {
     }
 
     public void play(Player playerX) {
-        state = state.changeState();
+        state = state.changeState(playerX);
     }
 
     public PlayState state() {

@@ -1,5 +1,6 @@
 package lacombe.kata;
 
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static lacombe.kata.PlayState.PLAYER_O_TURN;
@@ -25,5 +26,12 @@ public class TicTacToeTest {
         ticTacToe.play(PLAYER_O);
 
         assertThat(ticTacToe.state()).isEqualTo(PLAYER_X_TURN);
+    }
+    @Test
+    void player_O_plays_first_should_return_error() {
+        var ticTacToe = new TicTacToe();
+
+        Assertions.assertThatThrownBy(() -> ticTacToe.play(PLAYER_O))
+                .isInstanceOf(AssertionError.class);
     }
 }
