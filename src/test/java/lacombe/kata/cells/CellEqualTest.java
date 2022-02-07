@@ -1,22 +1,28 @@
 package lacombe.kata.cells;
 
 import lacombe.kata.Cell;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static lacombe.kata.Player.PLAYER_X;
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class CellTest {
+public class CellEqualTest {
     @Test
-    void cell_1_1_is_not_equal_to_cell_1_2() {
+    void cell_with_same_x_but_different_y_are_not_equals() {
         var cell_1_1 = new Cell(1, 1);
 
         var cell_1_2 = new Cell(1, 2);
         assertThat(cell_1_1).isNotEqualTo(cell_1_2);
     }
     @Test
-    void filled_cell_1_1_is_equal_to_cell_1_1() {
+    void cell_with_different_x_but_same_y_are_not_equals() {
+        var cell_1_1 = new Cell(1, 1);
+
+        var cell_2_1 = new Cell(2, 1);
+        assertThat(cell_1_1).isNotEqualTo(cell_2_1);
+    }
+    @Test
+    void filled_cell_with_same_x_and_y_as_another_empty_cell_are_equals() {
         var filled_cell_1_1 = new Cell(1, 1);
         filled_cell_1_1.setWasPlayedBy(PLAYER_X);
 
