@@ -62,4 +62,11 @@ public class Grid {
                 .map(Cell::getWasPlayedBy)
                 .allMatch(player::equals);
     }
+
+    public boolean diagonalIsTakenBy(Player player) {
+        return cellList.stream()
+                .filter(cell -> cell.getX() == cell.getY())
+                .map(Cell::getWasPlayedBy)
+                .allMatch(player::equals);
+    }
 }
