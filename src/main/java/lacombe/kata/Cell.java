@@ -6,16 +6,12 @@ public class Cell {
     private final Coordinate coordinate;
     private Player player;
 
-    public int getX() {
-        return coordinate.x();
+    public Coordinate getCoordinate() {
+        return coordinate;
     }
 
-    public int getY() {
-        return coordinate.y();
-    }
-
-    public Cell(int x, int y) {
-        coordinate = new Coordinate(x, y);
+    public Cell(Coordinate coordinate) {
+        this.coordinate = coordinate;
     }
 
     public Player getWasPlayedBy() {
@@ -32,11 +28,19 @@ public class Cell {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Cell cell = (Cell) o;
-        return getX() == cell.getX() && getY() == cell.getY();
+        return coordinate.equals(cell.getCoordinate());
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(coordinate);
+    }
+
+    @Override
+    public String toString() {
+        return "Cell{" +
+                "coordinate=" + coordinate +
+                ", player=" + player +
+                '}';
     }
 }

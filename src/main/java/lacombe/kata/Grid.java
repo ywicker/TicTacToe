@@ -8,15 +8,15 @@ public class Grid {
 
     public Grid() {
         this.cellList = Set.of(
-                new Cell(1, 1),
-                new Cell(1, 2),
-                new Cell(1, 3),
-                new Cell(2, 1),
-                new Cell(2, 2),
-                new Cell(2, 3),
-                new Cell(3, 1),
-                new Cell(3, 2),
-                new Cell(3, 3));
+                new Cell(new Coordinate(1, 1)),
+                new Cell(new Coordinate(1, 2)),
+                new Cell(new Coordinate(1, 3)),
+                new Cell(new Coordinate(2, 1)),
+                new Cell(new Coordinate(2, 2)),
+                new Cell(new Coordinate(2, 3)),
+                new Cell(new Coordinate(3, 1)),
+                new Cell(new Coordinate(3, 2)),
+                new Cell(new Coordinate(3, 3)));
     }
 
     public void set(Player player, int x, int y) {
@@ -29,7 +29,7 @@ public class Grid {
 
     public Cell get(int x, int y) {
         return cellList.stream()
-                .filter(cell -> x == cell.getX() && y == cell.getY())
+                .filter(cell -> x == cell.getCoordinate().x() && y == cell.getCoordinate().y())
                 .findAny()
                 .orElse(null);
     }
@@ -51,25 +51,25 @@ public class Grid {
 
     private boolean yRowIsTokenBy(Player player, int y) {
         return cellList.stream()
-                .filter(cell -> cell.getY() == y)
+                .filter(cell -> cell.getCoordinate().y() == y)
                 .map(Cell::getWasPlayedBy)
                 .allMatch(player::equals);
     }
 
     private boolean xColumnIsTokenBy(Player player, int x) {
         return cellList.stream()
-                .filter(cell -> cell.getX() == x)
+                .filter(cell -> cell.getCoordinate().x() == x)
                 .map(Cell::getWasPlayedBy)
                 .allMatch(player::equals);
     }
 
     public boolean diagonalIsTakenBy(Player player) {
         return cellList.stream()
-                .filter(cell -> cell.getX() == cell.getY())
+                .filter(cell -> cell.getCoordinate().x() == cell.getCoordinate().y())
                 .map(Cell::getWasPlayedBy)
                 .allMatch(player::equals)
                 || cellList.stream()
-                .filter(cell -> (cell.getX() + cell.getY()) == 4)
+                .filter(cell -> (cell.getCoordinate().x() + cell.getCoordinate().y()) == 4)
                 .map(Cell::getWasPlayedBy)
                 .allMatch(player::equals);
     }
