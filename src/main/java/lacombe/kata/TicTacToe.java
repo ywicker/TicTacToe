@@ -13,8 +13,7 @@ public class TicTacToe {
         grid.set(player, new Coordinate(x, y));
 
         var isEndGame = grid.allFieldsAreTaken()
-                || grid.rowOrColumnIsTakenBy(player)
-                || grid.diagonalIsTakenBy(player);
+                || grid.sequenceOfFieldsIsTokenBy(player);
 
         state = state.changeState(player, isEndGame);
     }

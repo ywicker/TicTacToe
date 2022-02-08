@@ -43,19 +43,13 @@ public class Grid {
                 .noneMatch(Objects::isNull);
     }
 
-    public boolean rowOrColumnIsTakenBy(Player player) {
-        List<List<Cell>> rowsOrColumns = new ArrayList<>();
-        rowsOrColumns.addAll(rows());
-        rowsOrColumns.addAll(columns());
-        return rowsOrColumns.stream().anyMatch(cells ->
-                cells.stream()
-                        .map(Cell::getWasPlayedBy)
-                        .allMatch(player::equals)
-        );
-    }
+    public boolean sequenceOfFieldsIsTokenBy(Player player) {
+        List<List<Cell>> sequenceOfFields = new ArrayList<>();
+        sequenceOfFields.addAll(rows());
+        sequenceOfFields.addAll(columns());
+        sequenceOfFields.addAll(diagonals());
 
-    public boolean diagonalIsTakenBy(Player player) {
-        return diagonals().stream().anyMatch(cells ->
+        return sequenceOfFields.stream().anyMatch(cells ->
                 cells.stream()
                         .map(Cell::getWasPlayedBy)
                         .allMatch(player::equals)
