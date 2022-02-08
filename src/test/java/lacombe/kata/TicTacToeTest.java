@@ -85,4 +85,17 @@ public class TicTacToeTest {
         Assertions.assertThatThrownBy(() -> ticTacToe.play(PLAYER_X, 1, 2))
                 .isInstanceOf(AssertionError.class);
     }
+    @Test
+    void is_over_when_all_fields_in_a_diagonal_are_taken() {
+        var ticTacToe = new TicTacToe();
+
+        ticTacToe.play(PLAYER_X, 1, 1);
+        ticTacToe.play(PLAYER_O, 1, 3);
+        ticTacToe.play(PLAYER_X, 1, 2);
+        ticTacToe.play(PLAYER_O, 2, 2);
+        ticTacToe.play(PLAYER_X, 3, 3);
+        ticTacToe.play(PLAYER_O, 3, 1);
+
+        assertThat(ticTacToe.state()).isEqualTo(IS_OVER);
+    }
 }
