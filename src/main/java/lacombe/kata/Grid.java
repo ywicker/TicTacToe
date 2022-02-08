@@ -55,10 +55,18 @@ public class Grid {
                 .map(Cell::getWasPlayedBy)
                 .allMatch(player::equals);
     }
-
     public boolean columnIsTakenBy(Player player) {
+        for(int i = 1; i<=3; i++) {
+            if(xColumnIsTokenBy(player, i)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean xColumnIsTokenBy(Player player, int x) {
         return cellList.stream()
-                .filter(cell -> cell.getX() == 1)
+                .filter(cell -> cell.getX() == x)
                 .map(Cell::getWasPlayedBy)
                 .allMatch(player::equals);
     }

@@ -134,5 +134,29 @@ public class GridTest {
 
         Assertions.assertTrue(cells.columnIsTakenBy(PLAYER_X));
     }
+    @Test
+    void all_fields_in_a_column_are_not_taken_by_the_player_X_when_no_column_has_been_filled_by_player_X() {
+        var cells = new Grid();
+
+        cells.set(PLAYER_X, 1, 1);
+        cells.set(PLAYER_O, 2, 2);
+        cells.set(PLAYER_X, 2, 1);
+        cells.set(PLAYER_O, 3, 2);
+
+        Assertions.assertFalse(cells.columnIsTakenBy(PLAYER_X));
+    }
+    @Test
+    void all_fields_in_a_column_are_taken_by_the_player_O_when_the_third_column_has_been_filled_by_player_O() {
+        var cells = new Grid();
+
+        cells.set(PLAYER_X, 1, 1);
+        cells.set(PLAYER_O, 3, 1);
+        cells.set(PLAYER_X, 2, 2);
+        cells.set(PLAYER_O, 3, 3);
+        cells.set(PLAYER_X, 2, 3);
+        cells.set(PLAYER_O, 3, 2);
+
+        Assertions.assertTrue(cells.columnIsTakenBy(PLAYER_O));
+    }
 
 }
