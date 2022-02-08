@@ -96,18 +96,7 @@ public class GridTest {
         cells.set(PLAYER_O, 3, 2);
         cells.set(PLAYER_X, 3, 1);
 
-        Assertions.assertTrue(cells.rowIsTakenBy(PLAYER_X));
-    }
-    @Test
-    void all_fields_in_a_line_are_not_taken_by_the_player_X_when_no_line_has_been_filled_by_player_X() {
-        var cells = new Grid();
-
-        cells.set(PLAYER_X, 1, 1);
-        cells.set(PLAYER_O, 2, 2);
-        cells.set(PLAYER_X, 2, 1);
-        cells.set(PLAYER_O, 3, 2);
-
-        Assertions.assertFalse(cells.rowIsTakenBy(PLAYER_X));
+        Assertions.assertTrue(cells.rowOrColumnIsTakenBy(PLAYER_X));
     }
     @Test
     void all_fields_in_a_line_are_taken_by_the_player_O_when_the_third_line_has_been_filled_by_player_O() {
@@ -120,7 +109,7 @@ public class GridTest {
         cells.set(PLAYER_X, 3, 1);
         cells.set(PLAYER_O, 2, 3);
 
-        Assertions.assertTrue(cells.rowIsTakenBy(PLAYER_O));
+        Assertions.assertTrue(cells.rowOrColumnIsTakenBy(PLAYER_O));
     }
     @Test
     void all_fields_in_a_column_are_taken_by_the_player_X_when_the_first_column_has_been_filled_by_player_X() {
@@ -132,7 +121,7 @@ public class GridTest {
         cells.set(PLAYER_O, 2, 3);
         cells.set(PLAYER_X, 1, 3);
 
-        Assertions.assertTrue(cells.columnIsTakenBy(PLAYER_X));
+        Assertions.assertTrue(cells.rowOrColumnIsTakenBy(PLAYER_X));
     }
     @Test
     void all_fields_in_a_column_are_not_taken_by_the_player_X_when_no_column_has_been_filled_by_player_X() {
@@ -143,7 +132,7 @@ public class GridTest {
         cells.set(PLAYER_X, 2, 1);
         cells.set(PLAYER_O, 3, 2);
 
-        Assertions.assertFalse(cells.columnIsTakenBy(PLAYER_X));
+        Assertions.assertFalse(cells.rowOrColumnIsTakenBy(PLAYER_X));
     }
     @Test
     void all_fields_in_a_column_are_taken_by_the_player_O_when_the_third_column_has_been_filled_by_player_O() {
@@ -156,7 +145,7 @@ public class GridTest {
         cells.set(PLAYER_X, 2, 3);
         cells.set(PLAYER_O, 3, 2);
 
-        Assertions.assertTrue(cells.columnIsTakenBy(PLAYER_O));
+        Assertions.assertTrue(cells.rowOrColumnIsTakenBy(PLAYER_O));
     }
 
 }
