@@ -1,7 +1,10 @@
 package lacombe.kata;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
+import java.util.stream.Stream;
 
 public class Grid {
     private final Set<Cell> cellList;
@@ -41,36 +44,46 @@ public class Grid {
     }
 
     public boolean rowOrColumnIsTakenBy(Player player) {
-        for(int i = 1; i<=3; i++) {
-            if(yRowIsTokenBy(player, i) || xColumnIsTokenBy(player, i)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    private boolean yRowIsTokenBy(Player player, int y) {
-        return cellList.stream()
-                .filter(cell -> cell.getCoordinate().y() == y)
-                .map(Cell::getWasPlayedBy)
-                .allMatch(player::equals);
-    }
-
-    private boolean xColumnIsTokenBy(Player player, int x) {
-        return cellList.stream()
-                .filter(cell -> cell.getCoordinate().x() == x)
-                .map(Cell::getWasPlayedBy)
-                .allMatch(player::equals);
+        List<List<Cell>> rowsOrColumns = new ArrayList<>();
+        rowsOrColumns.addAll(rows());
+        rowsOrColumns.addAll(columns());
+        return rowsOrColumns.stream().anyMatch(cells ->
+                cells.stream()
+                        .map(Cell::getWasPlayedBy)
+                        .allMatch(player::equals)
+        );
     }
 
     public boolean diagonalIsTakenBy(Player player) {
-        return cellList.stream()
-                .filter(cell -> cell.getCoordinate().x() == cell.getCoordinate().y())
-                .map(Cell::getWasPlayedBy)
-                .allMatch(player::equals)
-                || cellList.stream()
-                .filter(cell -> (cell.getCoordinate().x() + cell.getCoordinate().y()) == 4)
-                .map(Cell::getWasPlayedBy)
-                .allMatch(player::equals);
+        return diagonals().stream().anyMatch(cells ->
+                cells.stream()
+                        .map(Cell::getWasPlayedBy)
+                        .allMatch(player::equals)
+        );
+    }
+
+    private List<List<Cell>> rows() {
+        return Stream.of(1, 2, 3).map(y ->
+                cellList.stream()
+                        .filter(cell -> cell.getCoordinate().y() == y)
+                        .toList()
+        ).toList();
+    }
+    private List<List<Cell>> columns() {
+        return Stream.of(1, 2, 3).map(x ->
+                cellList.stream()
+                        .filter(cell -> cell.getCoordinate().x() == x)
+                        .toList()
+        ).toList();
+    }
+    private List<List<Cell>> diagonals() {
+        return List.of(
+                cellList.stream()
+                    .filter(cell -> cell.getCoordinate().x() == cell.getCoordinate().y())
+                    .toList(),
+                cellList.stream()
+                    .filter(cell -> (cell.getCoordinate().x() + cell.getCoordinate().y()) == 4)
+                    .toList()
+        );
     }
 }
