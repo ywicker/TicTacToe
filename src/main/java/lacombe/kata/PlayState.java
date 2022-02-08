@@ -25,6 +25,7 @@ public enum PlayState {
     }
 
     public PlayState changeState(Player player, boolean isEndGame){
+        assert !this.equals(IS_OVER);
         assert this.player.equals(player);
         if(isEndGame) {
             return IS_OVER;

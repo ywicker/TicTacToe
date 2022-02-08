@@ -71,4 +71,18 @@ public class TicTacToeTest {
 
         assertThat(ticTacToe.state()).isEqualTo(IS_OVER);
     }
+    @Test
+    void player_is_playing_when_is_over_should_return_error() {
+        var ticTacToe = new TicTacToe();
+
+        ticTacToe.play(PLAYER_X, 1, 1);
+        ticTacToe.play(PLAYER_O, 3, 1);
+        ticTacToe.play(PLAYER_X, 2, 2);
+        ticTacToe.play(PLAYER_O, 3, 3);
+        ticTacToe.play(PLAYER_X, 2, 3);
+        ticTacToe.play(PLAYER_O, 3, 2);
+
+        Assertions.assertThatThrownBy(() -> ticTacToe.play(PLAYER_X, 1, 2))
+                .isInstanceOf(AssertionError.class);
+    }
 }
