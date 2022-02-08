@@ -3,21 +3,19 @@ package lacombe.kata;
 import java.util.Objects;
 
 public class Cell {
-    private final int x;
-    private final int y;
+    private final Coordinate coordinate;
     private Player player;
 
     public int getX() {
-        return x;
+        return coordinate.x();
     }
 
     public int getY() {
-        return y;
+        return coordinate.y();
     }
 
     public Cell(int x, int y) {
-        this.x = x;
-        this.y = y;
+        coordinate = new Coordinate(x, y);
     }
 
     public Player getWasPlayedBy() {
@@ -34,11 +32,11 @@ public class Cell {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Cell cell = (Cell) o;
-        return x == cell.x && y == cell.y;
+        return getX() == cell.getX() && getY() == cell.getY();
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(x, y);
+        return Objects.hash(coordinate);
     }
 }
