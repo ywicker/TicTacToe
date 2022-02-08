@@ -10,7 +10,7 @@ public class TicTacToe {
     }
 
     public void play(Player player, int x, int y) {
-        grid.set(player, x, y);
+        grid.set(player, new Coordinate(x, y));
 
         var isEndGame = grid.allFieldsAreTaken()
                 || grid.rowOrColumnIsTakenBy(player)

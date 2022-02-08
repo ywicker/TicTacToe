@@ -19,17 +19,17 @@ public class Grid {
                 new Cell(new Coordinate(3, 3)));
     }
 
-    public void set(Player player, int x, int y) {
-        var cell = this.get(x, y);
+    public void set(Player player, Coordinate coordinate) {
+        var cell = this.get(coordinate);
 
         assert cell != null;
 
         cell.setWasPlayedBy(player);
     }
 
-    public Cell get(int x, int y) {
+    public Cell get(Coordinate coordinate) {
         return cellList.stream()
-                .filter(cell -> x == cell.getCoordinate().x() && y == cell.getCoordinate().y())
+                .filter(cell -> coordinate.equals(cell.getCoordinate()))
                 .findAny()
                 .orElse(null);
     }
