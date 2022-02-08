@@ -86,5 +86,17 @@ public class GridTest {
 
         Assertions.assertFalse(cells.allFieldsAreTaken());
     }
+    @Test
+    void all_fields_in_a_line_are_occupied_by_the_player_when_the_first_line_has_been_filled_by_player_X() {
+        var cells = new Grid();
+
+        cells.set(PLAYER_X, 1, 1);
+        cells.set(PLAYER_O, 2, 2);
+        cells.set(PLAYER_X, 1, 2);
+        cells.set(PLAYER_O, 2, 3);
+        cells.set(PLAYER_X, 1, 3);
+
+        Assertions.assertTrue(cells.rowIsTaken(PLAYER_X));
+    }
 
 }

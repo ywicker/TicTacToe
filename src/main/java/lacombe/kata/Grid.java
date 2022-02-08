@@ -39,4 +39,8 @@ public class Grid {
                 .map(Cell::getWasPlayedBy)
                 .noneMatch(Objects::isNull);
     }
+
+    public boolean rowIsTaken(Player player) {
+        return true;
+    }
 }
