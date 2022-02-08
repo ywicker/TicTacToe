@@ -41,6 +41,9 @@ public class Grid {
     }
 
     public boolean rowIsTaken(Player player) {
-        return true;
+        return cellList.stream()
+                .filter(cell -> cell.getX() == 1)
+                .map(Cell::getWasPlayedBy)
+                .allMatch(player::equals);
     }
 }
