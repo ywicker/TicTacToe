@@ -92,11 +92,11 @@ public class GridTest {
 
         cells.set(PLAYER_X, 1, 1);
         cells.set(PLAYER_O, 2, 2);
-        cells.set(PLAYER_X, 1, 2);
-        cells.set(PLAYER_O, 2, 3);
-        cells.set(PLAYER_X, 1, 3);
+        cells.set(PLAYER_X, 2, 1);
+        cells.set(PLAYER_O, 3, 2);
+        cells.set(PLAYER_X, 3, 1);
 
-        Assertions.assertTrue(cells.rowIsTaken(PLAYER_X));
+        Assertions.assertTrue(cells.rowIsTakenBy(PLAYER_X));
     }
     @Test
     void all_fields_in_a_line_are_not_taken_by_the_player_X_when_no_line_has_been_filled_by_player_X() {
@@ -104,10 +104,23 @@ public class GridTest {
 
         cells.set(PLAYER_X, 1, 1);
         cells.set(PLAYER_O, 2, 2);
-        cells.set(PLAYER_X, 1, 2);
+        cells.set(PLAYER_X, 2, 1);
+        cells.set(PLAYER_O, 3, 2);
+
+        Assertions.assertFalse(cells.rowIsTakenBy(PLAYER_X));
+    }
+    @Test
+    void all_fields_in_a_line_are_taken_by_the_player_O_when_the_third_line_has_been_filled_by_player_O() {
+        var cells = new Grid();
+
+        cells.set(PLAYER_X, 1, 1);
+        cells.set(PLAYER_O, 1, 3);
+        cells.set(PLAYER_X, 2, 2);
+        cells.set(PLAYER_O, 3, 3);
+        cells.set(PLAYER_X, 3, 1);
         cells.set(PLAYER_O, 2, 3);
 
-        Assertions.assertFalse(cells.rowIsTaken(PLAYER_X));
+        Assertions.assertTrue(cells.rowIsTakenBy(PLAYER_O));
     }
 
 }

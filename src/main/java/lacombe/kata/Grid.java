@@ -40,9 +40,18 @@ public class Grid {
                 .noneMatch(Objects::isNull);
     }
 
-    public boolean rowIsTaken(Player player) {
+    public boolean rowIsTakenBy(Player player) {
+        for(int i = 1; i<=3; i++) {
+            if(yRowIsTokenBy(player, i)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean yRowIsTokenBy(Player player, int y) {
         return cellList.stream()
-                .filter(cell -> cell.getX() == 1)
+                .filter(cell -> cell.getY() == y)
                 .map(Cell::getWasPlayedBy)
                 .allMatch(player::equals);
     }
