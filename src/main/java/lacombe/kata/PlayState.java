@@ -5,18 +5,15 @@ import static lacombe.kata.Player.PLAYER_X;
 
 public enum PlayState {
     PLAYER_X_TURN(PLAYER_X) {
-        public PlayState changeState(Player player, boolean allFieldsAreTaken){
-            super.changeState(player, allFieldsAreTaken);
-            if(allFieldsAreTaken) {
-                return IS_OVER;
-            }
-            return PLAYER_O_TURN;
+        public PlayState changeState(Player player, boolean isEndGame){
+            PlayState state = super.changeState(player, isEndGame);
+            return state != null ? state : PLAYER_O_TURN;
         }
     },
     PLAYER_O_TURN(PLAYER_O) {
-        public PlayState changeState(Player player, boolean allFieldsAreTaken){
-            super.changeState(player, allFieldsAreTaken);
-            return PLAYER_X_TURN;
+        public PlayState changeState(Player player, boolean isEndGame){
+            PlayState state = super.changeState(player, isEndGame);
+            return state != null ? state : PLAYER_X_TURN;
         }
     },
     IS_OVER(null);
@@ -27,8 +24,11 @@ public enum PlayState {
         this.player = player;
     }
 
-    public PlayState changeState(Player player, boolean allFieldsAreTaken){
+    public PlayState changeState(Player player, boolean isEndGame){
         assert this.player.equals(player);
+        if(isEndGame) {
+            return IS_OVER;
+        }
         return null;
     }
 }

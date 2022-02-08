@@ -12,9 +12,10 @@ public class TicTacToe {
     public void play(Player player, int x, int y) {
         grid.set(player, x, y);
 
-        var allFieldsAreTaken = grid.allFieldsAreTaken();
+        var isEndGame = grid.allFieldsAreTaken()
+                || grid.rowOrColumnIsTakenBy(player);
 
-        state = state.changeState(player, allFieldsAreTaken);
+        state = state.changeState(player, isEndGame);
     }
 
     public PlayState state() {
