@@ -1,13 +1,15 @@
 package lacombe.kata;
 
-import static lacombe.kata.PlayState.IS_OVER;
+import java.util.stream.Stream;
+
+import static lacombe.kata.GameState.*;
 
 public class TicTacToe {
-    PlayState state;
+    GameState state;
     Grid grid;
 
     public TicTacToe() {
-        state = PlayState.PLAYER_X_TURN;
+        state = GameState.PLAYER_X_TURN;
         grid = new Grid();
     }
 
@@ -17,18 +19,19 @@ public class TicTacToe {
         state = changeState(player);
     }
 
-    private PlayState changeState(Player player) {
+    private GameState changeState(Player player) {
         assert !state.equals(IS_OVER);
         assert player.equals(state.getPlayer());
 
-        if(grid.allFieldsAreTaken()
-                || grid.sequenceOfFieldsIsTokenBy(player)) {
+        if(grid.allFieldsAreTaken()) {
             return IS_OVER;
+        } else if(grid.sequenceOfFieldsIsTokenBy(player)){
+            return state.gameWonBy(player);
         }
         return state.defaultNextState();
     }
 
-    public PlayState state() {
+    public GameState state() {
         return state;
     }
 }

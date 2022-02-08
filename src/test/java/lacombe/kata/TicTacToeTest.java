@@ -3,7 +3,7 @@ package lacombe.kata;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import static lacombe.kata.PlayState.*;
+import static lacombe.kata.GameState.*;
 import static lacombe.kata.Player.PLAYER_O;
 import static lacombe.kata.Player.PLAYER_X;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -62,14 +62,13 @@ public class TicTacToeTest {
     void is_over_when_all_fields_in_a_column_are_taken() {
         var ticTacToe = new TicTacToe();
 
-        ticTacToe.play(PLAYER_X, 1, 1);
-        ticTacToe.play(PLAYER_O, 3, 1);
-        ticTacToe.play(PLAYER_X, 2, 2);
-        ticTacToe.play(PLAYER_O, 3, 3);
-        ticTacToe.play(PLAYER_X, 2, 3);
-        ticTacToe.play(PLAYER_O, 3, 2);
+        ticTacToe.play(PLAYER_X, 3, 1);
+        ticTacToe.play(PLAYER_O, 2, 2);
+        ticTacToe.play(PLAYER_X, 3, 3);
+        ticTacToe.play(PLAYER_O, 2, 3);
+        ticTacToe.play(PLAYER_X, 3, 2);
 
-        assertThat(ticTacToe.state()).isEqualTo(IS_OVER);
+        assertThat(ticTacToe.state()).isEqualTo(PLAYER_X_WINS);
     }
     @Test
     void player_is_playing_when_is_over_should_return_error() {
@@ -96,6 +95,6 @@ public class TicTacToeTest {
         ticTacToe.play(PLAYER_X, 3, 3);
         ticTacToe.play(PLAYER_O, 3, 1);
 
-        assertThat(ticTacToe.state()).isEqualTo(IS_OVER);
+        assertThat(ticTacToe.state()).isEqualTo(PLAYER_O_WINS);
     }
 }
