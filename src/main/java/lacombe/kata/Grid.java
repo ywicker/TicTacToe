@@ -55,4 +55,11 @@ public class Grid {
                 .map(Cell::getWasPlayedBy)
                 .allMatch(player::equals);
     }
+
+    public boolean columnIsTakenBy(Player player) {
+        return cellList.stream()
+                .filter(cell -> cell.getX() == 1)
+                .map(Cell::getWasPlayedBy)
+                .allMatch(player::equals);
+    }
 }

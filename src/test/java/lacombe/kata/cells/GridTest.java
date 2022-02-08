@@ -122,5 +122,17 @@ public class GridTest {
 
         Assertions.assertTrue(cells.rowIsTakenBy(PLAYER_O));
     }
+    @Test
+    void all_fields_in_a_column_are_taken_by_the_player_X_when_the_first_column_has_been_filled_by_player_X() {
+        var cells = new Grid();
+
+        cells.set(PLAYER_X, 1, 1);
+        cells.set(PLAYER_O, 2, 2);
+        cells.set(PLAYER_X, 1, 2);
+        cells.set(PLAYER_O, 2, 3);
+        cells.set(PLAYER_X, 1, 3);
+
+        Assertions.assertTrue(cells.columnIsTakenBy(PLAYER_X));
+    }
 
 }
