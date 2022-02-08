@@ -1,5 +1,7 @@
 package lacombe.kata;
 
+import static lacombe.kata.PlayState.IS_OVER;
+
 public class TicTacToe {
     PlayState state;
     Grid grid;
@@ -12,10 +14,18 @@ public class TicTacToe {
     public void play(Player player, int x, int y) {
         grid.set(player, new Coordinate(x, y));
 
-        var isEndGame = grid.allFieldsAreTaken()
-                || grid.sequenceOfFieldsIsTokenBy(player);
+        state = changeState(player);
+    }
 
-        state = state.changeState(player, isEndGame);
+    private PlayState changeState(Player player) {
+        assert !state.equals(IS_OVER);
+        assert player.equals(state.getPlayer());
+
+        if(grid.allFieldsAreTaken()
+                || grid.sequenceOfFieldsIsTokenBy(player)) {
+            return IS_OVER;
+        }
+        return state.defaultNextState();
     }
 
     public PlayState state() {
