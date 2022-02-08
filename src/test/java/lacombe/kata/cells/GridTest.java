@@ -171,5 +171,17 @@ public class GridTest {
 
         Assertions.assertFalse(cells.diagonalIsTakenBy(PLAYER_X));
     }
+    @Test
+    void all_fields_in_a_diagonal_are_taken_by_the_player_X_when_the_second_diagonal_has_been_filled_by_player_X() {
+        var cells = new Grid();
+
+        cells.set(PLAYER_X, 1, 3);
+        cells.set(PLAYER_O, 1, 2);
+        cells.set(PLAYER_X, 2, 2);
+        cells.set(PLAYER_O, 3, 3);
+        cells.set(PLAYER_X, 3, 1);
+
+        Assertions.assertTrue(cells.diagonalIsTakenBy(PLAYER_X));
+    }
 
 }

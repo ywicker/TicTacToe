@@ -67,6 +67,10 @@ public class Grid {
         return cellList.stream()
                 .filter(cell -> cell.getX() == cell.getY())
                 .map(Cell::getWasPlayedBy)
+                .allMatch(player::equals)
+                || cellList.stream()
+                .filter(cell -> (cell.getX() + cell.getY()) == 4)
+                .map(Cell::getWasPlayedBy)
                 .allMatch(player::equals);
     }
 }
