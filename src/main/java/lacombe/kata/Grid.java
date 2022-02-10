@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Grid {
@@ -44,40 +45,38 @@ public class Grid {
     }
 
     public boolean sequenceOfFieldsIsTokenBy(Player player) {
-        List<List<Cell>> sequenceOfFields = new ArrayList<>();
+        List<SequenceOfField> sequenceOfFields = new ArrayList<>();
         sequenceOfFields.addAll(rows());
         sequenceOfFields.addAll(columns());
         sequenceOfFields.addAll(diagonals());
 
-        return sequenceOfFields.stream().anyMatch(cells ->
-                cells.stream()
-                        .map(Cell::getWasPlayedBy)
-                        .allMatch(player::equals)
+        return sequenceOfFields.stream().anyMatch(sequenceOfField ->
+                sequenceOfField.isCompletelyTakenBy(player)
         );
     }
 
-    private List<List<Cell>> rows() {
+    private List<SequenceOfField> rows() {
         return Stream.of(1, 2, 3).map(y ->
-                cellList.stream()
+                new SequenceOfField(cellList.stream()
                         .filter(cell -> cell.getCoordinate().y() == y)
-                        .toList()
+                        .collect(Collectors.toSet()))
         ).toList();
     }
-    private List<List<Cell>> columns() {
+    private List<SequenceOfField> columns() {
         return Stream.of(1, 2, 3).map(x ->
-                cellList.stream()
+                new SequenceOfField(cellList.stream()
                         .filter(cell -> cell.getCoordinate().x() == x)
-                        .toList()
+                        .collect(Collectors.toSet()))
         ).toList();
     }
-    private List<List<Cell>> diagonals() {
+    private List<SequenceOfField> diagonals() {
         return List.of(
-                cellList.stream()
+                new SequenceOfField(cellList.stream()
                     .filter(cell -> cell.getCoordinate().x() == cell.getCoordinate().y())
-                    .toList(),
-                cellList.stream()
+                        .collect(Collectors.toSet())),
+                new SequenceOfField(cellList.stream()
                     .filter(cell -> (cell.getCoordinate().x() + cell.getCoordinate().y()) == 4)
-                    .toList()
+                        .collect(Collectors.toSet()))
         );
     }
 }

@@ -1,7 +1,5 @@
 package lacombe.kata;
 
-import java.util.stream.Stream;
-
 import static lacombe.kata.GameState.*;
 
 public class TicTacToe {
