@@ -5,10 +5,12 @@ import static lacombe.kata.GameState.*;
 public class TicTacToe {
     GameState state;
     Grid grid;
+    FieldSequences fieldSequences;
 
     public TicTacToe() {
         state = GameState.PLAYER_X_TURN;
         grid = new Grid();
+        fieldSequences = new FieldSequences(grid);
     }
 
     public void play(Player player, int x, int y) {
@@ -23,7 +25,7 @@ public class TicTacToe {
 
         if(grid.allFieldsAreTaken()) {
             return IS_OVER;
-        } else if(grid.sequenceOfFieldsIsTokenBy(player)){
+        } else if(fieldSequences.oneIsCompletelyTokenBy(player)){
             return state.gameWonBy(player);
         }
         return state.defaultNextState();

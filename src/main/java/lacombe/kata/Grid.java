@@ -1,6 +1,5 @@
 package lacombe.kata;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
@@ -44,37 +43,26 @@ public class Grid {
                 .noneMatch(Objects::isNull);
     }
 
-    public boolean sequenceOfFieldsIsTokenBy(Player player) {
-        List<SequenceOfField> sequenceOfFields = new ArrayList<>();
-        sequenceOfFields.addAll(rows());
-        sequenceOfFields.addAll(columns());
-        sequenceOfFields.addAll(diagonals());
-
-        return sequenceOfFields.stream().anyMatch(sequenceOfField ->
-                sequenceOfField.isCompletelyTakenBy(player)
-        );
-    }
-
-    private List<SequenceOfField> rows() {
+    public List<FieldSequence> rows() {
         return Stream.of(1, 2, 3).map(y ->
-                new SequenceOfField(cellList.stream()
+                new FieldSequence(cellList.stream()
                         .filter(cell -> cell.getCoordinate().y() == y)
                         .collect(Collectors.toSet()))
         ).toList();
     }
-    private List<SequenceOfField> columns() {
+    public List<FieldSequence> columns() {
         return Stream.of(1, 2, 3).map(x ->
-                new SequenceOfField(cellList.stream()
+                new FieldSequence(cellList.stream()
                         .filter(cell -> cell.getCoordinate().x() == x)
                         .collect(Collectors.toSet()))
         ).toList();
     }
-    private List<SequenceOfField> diagonals() {
+    public List<FieldSequence> diagonals() {
         return List.of(
-                new SequenceOfField(cellList.stream()
+                new FieldSequence(cellList.stream()
                     .filter(cell -> cell.getCoordinate().x() == cell.getCoordinate().y())
                         .collect(Collectors.toSet())),
-                new SequenceOfField(cellList.stream()
+                new FieldSequence(cellList.stream()
                     .filter(cell -> (cell.getCoordinate().x() + cell.getCoordinate().y()) == 4)
                         .collect(Collectors.toSet()))
         );

@@ -2,7 +2,7 @@ package lacombe.kata;
 
 import java.util.Set;
 
-public record SequenceOfField(Set<Cell> cellList) {
+public record FieldSequence(Set<Cell> cellList) {
 
     public boolean isCompletelyTakenBy(Player player) {
         return cellList.stream()
