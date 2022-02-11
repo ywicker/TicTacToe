@@ -1,6 +1,5 @@
 package lacombe.kata;
 
-import lacombe.kata.errors.AlreadyPlayedException;
 import lacombe.kata.errors.CellNotExistException;
 
 import java.util.LinkedList;
@@ -9,7 +8,6 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 public class Grid {
     private final Set<Cell> cellList;
@@ -33,7 +31,9 @@ public class Grid {
 
         cell.setWasPlayedBy(player);
     }
-
+    public Set<Cell> getCells() {
+        return Set.copyOf(cellList);
+    }
     public Cell get(Coordinate coordinate) {
         return cellList.stream()
                 .filter(cell -> coordinate.equals(cell.getCoordinate()))

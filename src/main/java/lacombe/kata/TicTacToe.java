@@ -4,6 +4,7 @@ import lacombe.kata.errors.GameStateIsOverException;
 import lacombe.kata.errors.PlayerTurnException;
 
 import java.util.List;
+import java.util.Set;
 
 import static lacombe.kata.GameState.*;
 
@@ -44,5 +45,8 @@ public class TicTacToe {
 
     public GameState state() {
         return state;
+    }
+    public Set<Cell> getCells() {
+        return grid.getCells();
     }
 }
