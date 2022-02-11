@@ -23,7 +23,7 @@ public class CellEqualTest {
         assertThat(cell_1_1).isNotEqualTo(cell_2_1);
     }
     @Test
-    void filled_cell_with_same_x_and_y_as_another_empty_cell_are_equals() {
+    void filled_cell_with_same_x_and_y_as_another_empty_cell_are_equals() throws Exception {
         var filled_cell_1_1 = new Cell(new Coordinate(1, 1));
         filled_cell_1_1.setWasPlayedBy(PLAYER_X);
 

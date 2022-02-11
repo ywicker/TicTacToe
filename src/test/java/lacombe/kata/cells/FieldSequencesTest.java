@@ -11,7 +11,7 @@ import static lacombe.kata.Player.PLAYER_X;
 
 public class FieldSequencesTest {
     @Test
-    void all_fields_in_a_line_are_taken_by_the_player_X_when_the_first_line_has_been_filled_by_player_X() {
+    void all_fields_in_a_line_are_taken_by_the_player_X_when_the_first_line_has_been_filled_by_player_X() throws Exception {
         var cells = new Grid();
         var fieldSequences = new FieldSequences(cells);
 
@@ -24,7 +24,7 @@ public class FieldSequencesTest {
         Assertions.assertTrue(fieldSequences.anyIsCompletelyTokenBy(PLAYER_X));
     }
     @Test
-    void all_fields_in_a_line_are_taken_by_the_player_O_when_the_third_line_has_been_filled_by_player_O() {
+    void all_fields_in_a_line_are_taken_by_the_player_O_when_the_third_line_has_been_filled_by_player_O() throws Exception {
         var cells = new Grid();
         var fieldSequences = new FieldSequences(cells);
 
@@ -38,7 +38,7 @@ public class FieldSequencesTest {
         Assertions.assertTrue(fieldSequences.anyIsCompletelyTokenBy(PLAYER_O));
     }
     @Test
-    void all_fields_in_a_column_are_taken_by_the_player_X_when_the_first_column_has_been_filled_by_player_X() {
+    void all_fields_in_a_column_are_taken_by_the_player_X_when_the_first_column_has_been_filled_by_player_X() throws Exception {
         var cells = new Grid();
         var fieldSequences = new FieldSequences(cells);
 
@@ -51,7 +51,7 @@ public class FieldSequencesTest {
         Assertions.assertTrue(fieldSequences.anyIsCompletelyTokenBy(PLAYER_X));
     }
     @Test
-    void all_fields_in_a_column_are_taken_by_the_player_O_when_the_third_column_has_been_filled_by_player_O() {
+    void all_fields_in_a_column_are_taken_by_the_player_O_when_the_third_column_has_been_filled_by_player_O() throws Exception {
         var cells = new Grid();
         var fieldSequences = new FieldSequences(cells);
 
@@ -65,7 +65,7 @@ public class FieldSequencesTest {
         Assertions.assertTrue(fieldSequences.anyIsCompletelyTokenBy(PLAYER_O));
     }
     @Test
-    void all_fields_in_a_diagonal_are_taken_by_the_player_X_when_the_first_diagonal_has_been_filled_by_player_X() {
+    void all_fields_in_a_diagonal_are_taken_by_the_player_X_when_the_first_diagonal_has_been_filled_by_player_X() throws Exception {
         var cells = new Grid();
         var fieldSequences = new FieldSequences(cells);
 
@@ -78,7 +78,7 @@ public class FieldSequencesTest {
         Assertions.assertTrue(fieldSequences.anyIsCompletelyTokenBy(PLAYER_X));
     }
     @Test
-    void all_fields_in_a_diagonal_are_not_taken_by_the_player_X_when_the_first_diagonal_has_not_been_filled_by_player_X() {
+    void all_fields_in_a_diagonal_are_not_taken_by_the_player_X_when_the_first_diagonal_has_not_been_filled_by_player_X() throws Exception {
         var cells = new Grid();
         var fieldSequences = new FieldSequences(cells);
 
@@ -91,7 +91,7 @@ public class FieldSequencesTest {
         Assertions.assertFalse(fieldSequences.anyIsCompletelyTokenBy(PLAYER_X));
     }
     @Test
-    void all_fields_in_a_diagonal_are_taken_by_the_player_X_when_the_second_diagonal_has_been_filled_by_player_X() {
+    void all_fields_in_a_diagonal_are_taken_by_the_player_X_when_the_second_diagonal_has_been_filled_by_player_X() throws Exception {
         var cells = new Grid();
         var fieldSequences = new FieldSequences(cells);
 
