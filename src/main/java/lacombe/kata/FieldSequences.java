@@ -13,7 +13,7 @@ public class FieldSequences {
         fieldSequenceList.addAll(grid.diagonals());
     }
 
-    public boolean oneIsCompletelyTokenBy(Player player) {
+    public boolean anyIsCompletelyTokenBy(Player player) {
         return fieldSequenceList.stream().anyMatch(sequenceOfField ->
                 sequenceOfField.isCompletelyTakenBy(player)
         );

@@ -25,7 +25,7 @@ public class TicTacToe {
 
         if(grid.allFieldsAreTaken()) {
             return IS_OVER;
-        } else if(fieldSequences.oneIsCompletelyTokenBy(player)){
+        } else if(fieldSequences.anyIsCompletelyTokenBy(player)){
             return state.gameWonBy(player);
         }
         return state.defaultNextState();

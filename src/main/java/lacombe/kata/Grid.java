@@ -8,18 +8,11 @@ import java.util.stream.Stream;
 
 public class Grid {
     private final Set<Cell> cellList;
+    private static final int GRID_SIZE = 3;
 
     public Grid() {
-        this.cellList = Set.of(
-                new Cell(new Coordinate(1, 1)),
-                new Cell(new Coordinate(1, 2)),
-                new Cell(new Coordinate(1, 3)),
-                new Cell(new Coordinate(2, 1)),
-                new Cell(new Coordinate(2, 2)),
-                new Cell(new Coordinate(2, 3)),
-                new Cell(new Coordinate(3, 1)),
-                new Cell(new Coordinate(3, 2)),
-                new Cell(new Coordinate(3, 3)));
+        var coordinates = Coordinate.coordinateListOfSizeGrid(GRID_SIZE);
+        cellList = coordinates.stream().map(Cell::new).collect(Collectors.toSet());
     }
 
     public void set(Player player, Coordinate coordinate) {
@@ -63,7 +56,7 @@ public class Grid {
                     .filter(cell -> cell.getCoordinate().x() == cell.getCoordinate().y())
                         .collect(Collectors.toSet())),
                 new FieldSequence(cellList.stream()
-                    .filter(cell -> (cell.getCoordinate().x() + cell.getCoordinate().y()) == 4)
+                    .filter(cell -> (cell.getCoordinate().x() + cell.getCoordinate().y()) == GRID_SIZE + Coordinate.START_COORDINATE)
                         .collect(Collectors.toSet()))
         );
     }
