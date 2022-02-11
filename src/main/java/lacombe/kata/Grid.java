@@ -43,14 +43,14 @@ public class Grid {
     }
 
     public List<FieldSequence> rows() {
-        return Stream.of(1, 2, 3).map(y ->
+        return GRID_RANGE.stream().map(y ->
                 new FieldSequence(cellList.stream()
                         .filter(cell -> cell.getCoordinate().y() == y)
                         .collect(Collectors.toSet()))
         ).toList();
     }
     public List<FieldSequence> columns() {
-        return Stream.of(1, 2, 3).map(x ->
+        return GRID_RANGE.stream().map(x ->
                 new FieldSequence(cellList.stream()
                         .filter(cell -> cell.getCoordinate().x() == x)
                         .collect(Collectors.toSet()))
