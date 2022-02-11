@@ -45,24 +45,24 @@ public class Grid {
     public List<FieldSequence> rows() {
         return GRID_RANGE.stream().map(y ->
                 new FieldSequence(cellList.stream()
-                        .filter(cell -> cell.getCoordinate().y() == y)
+                        .filter(cell -> cell.getCoordinate().isOnRowOf(y))
                         .collect(Collectors.toSet()))
         ).toList();
     }
     public List<FieldSequence> columns() {
         return GRID_RANGE.stream().map(x ->
                 new FieldSequence(cellList.stream()
-                        .filter(cell -> cell.getCoordinate().x() == x)
+                        .filter(cell -> cell.getCoordinate().isOnColumnOf(x))
                         .collect(Collectors.toSet()))
         ).toList();
     }
     public List<FieldSequence> diagonals() {
         return List.of(
                 new FieldSequence(cellList.stream()
-                    .filter(cell -> cell.getCoordinate().x() == cell.getCoordinate().y())
+                    .filter(cell -> cell.getCoordinate().isOnDiagonal())
                         .collect(Collectors.toSet())),
                 new FieldSequence(cellList.stream()
-                    .filter(cell -> (cell.getCoordinate().x() + cell.getCoordinate().y()) == (GRID_RANGE.peekFirst() + GRID_RANGE.peekLast()))
+                    .filter(cell -> (cell.getCoordinate().isOnOppositeDiagonal(GRID_RANGE)))
                         .collect(Collectors.toSet()))
         );
     }
