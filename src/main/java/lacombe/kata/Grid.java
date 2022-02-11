@@ -1,17 +1,23 @@
 package lacombe.kata;
 
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class Grid {
     private final Set<Cell> cellList;
-    private static final int GRID_SIZE = 3;
+    private static final LinkedList<Integer> GRID_RANGE;
+    static {
+        GRID_RANGE = IntStream.rangeClosed(1, 3)
+                .boxed().collect(Collectors.toCollection(LinkedList::new));
+    }
 
     public Grid() {
-        var coordinates = Coordinate.coordinateListOfSizeGrid(GRID_SIZE);
+        var coordinates = Coordinate.coordinateListOfSizeGrid(GRID_RANGE);
         cellList = coordinates.stream().map(Cell::new).collect(Collectors.toSet());
     }
 
@@ -56,7 +62,7 @@ public class Grid {
                     .filter(cell -> cell.getCoordinate().x() == cell.getCoordinate().y())
                         .collect(Collectors.toSet())),
                 new FieldSequence(cellList.stream()
-                    .filter(cell -> (cell.getCoordinate().x() + cell.getCoordinate().y()) == GRID_SIZE + Coordinate.START_COORDINATE)
+                    .filter(cell -> (cell.getCoordinate().x() + cell.getCoordinate().y()) == (GRID_RANGE.peekFirst() + GRID_RANGE.peekLast()))
                         .collect(Collectors.toSet()))
         );
     }
