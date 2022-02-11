@@ -1,5 +1,7 @@
 package lacombe.kata;
 
+import lacombe.kata.errors.AlreadyPlayedException;
+
 import java.util.Objects;
 
 public class Cell {
@@ -18,8 +20,10 @@ public class Cell {
         return player;
     }
 
-    public void setWasPlayedBy(Player player) {
-        assert this.player == null;
+    public void setWasPlayedBy(Player player) throws AlreadyPlayedException {
+        if(this.player != null) {
+            throw new AlreadyPlayedException();
+        }
         this.player = player;
     }
 

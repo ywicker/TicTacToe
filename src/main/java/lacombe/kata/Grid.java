@@ -1,5 +1,8 @@
 package lacombe.kata;
 
+import lacombe.kata.errors.AlreadyPlayedException;
+import lacombe.kata.errors.CellNotExistException;
+
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
@@ -21,10 +24,12 @@ public class Grid {
         cellList = coordinates.stream().map(Cell::new).collect(Collectors.toSet());
     }
 
-    public void set(Player player, Coordinate coordinate) {
+    public void set(Player player, Coordinate coordinate) throws Exception {
         var cell = this.get(coordinate);
 
-        assert cell != null;
+        if(cell==null){
+            throw new CellNotExistException(coordinate);
+        }
 
         cell.setWasPlayedBy(player);
     }
