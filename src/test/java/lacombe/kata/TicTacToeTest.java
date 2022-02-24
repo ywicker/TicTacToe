@@ -99,4 +99,20 @@ public class TicTacToeTest {
 
         assertThat(ticTacToe.state()).isEqualTo(PLAYER_O_WINS);
     }
+    @Test
+    void is_over_when_all_fields_are_taken_and_one_player_wins() throws Exception {
+        var ticTacToe = new TicTacToe();
+
+        ticTacToe.play(PLAYER_X, 1, 1);
+        ticTacToe.play(PLAYER_O, 2, 2);
+        ticTacToe.play(PLAYER_X, 1, 2);
+        ticTacToe.play(PLAYER_O, 1, 3);
+        ticTacToe.play(PLAYER_X, 3, 1);
+        ticTacToe.play(PLAYER_O, 3, 2);
+        ticTacToe.play(PLAYER_X, 3, 3);
+        ticTacToe.play(PLAYER_O, 2, 3);
+        ticTacToe.play(PLAYER_X, 2, 1);
+
+        assertThat(ticTacToe.state()).isEqualTo(PLAYER_X_WINS);
+    }
 }
